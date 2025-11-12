@@ -1,0 +1,320 @@
+/* --- FONT IMPORT --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* --- THEME AND COLOR VARIABLES --- */
+:root {
+    --bg-color: #f4f7f9;
+    --text-color: #2c3e50;
+    --card-bg-color: #ffffff;
+    --border-color: #e0e0e0;
+    --primary-color: #3498db;
+    --primary-text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme="dark"] {
+    --text-color: #ecf0f1;
+    --card-bg-color: #34495e;
+    --border-color: #4a627a;
+    --primary-color: #3498db;
+    --primary-text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* --- GENERAL STYLES & RESETS --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    transition: color 0.3s;
+    line-height: 1.6;
+    background: var(--card-bg-color);
+}
+
+.app-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+/* --- HEADER & CONTROLS --- */
+.app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.app-header h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-shadow: 3px 3px 3px var(--shadow-color),
+                 0 0 8px rgba(52, 152, 219, 0.3); /* A subtle glow effect */
+}
+
+/* --- MAIN CONTROLS TOOLBAR --- */
+.main-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap; /* Allows controls to wrap on smaller screens */
+}
+
+#search-form {
+    display: flex;
+    flex-grow: 1; /* Allow form to grow */
+    max-width: 600px; /* But not excessively large */
+    gap: 0.5rem;
+}
+
+#search-input {
+    width: 100%; /* Input will fill the space within the form */
+    height: 40px; /* Set explicit height */
+    padding: 0 0.75rem; /* Adjust padding to horizontal only */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem; /* Match font size with other buttons */
+    color: var(--text-color);   
+    background-color: var(--card-bg-color);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#search-input:focus {
+    outline: none; /* Remove the default browser outline */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4);
+}
+
+button {
+    height: 40px; /* Set explicit height */
+    padding: 0 1.2rem; /* Adjust padding to horizontal only */
+    display: inline-flex; /* Helps with vertical alignment */
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Make the search button smaller */
+#search-form button[type="submit"] {
+    padding: 0 1rem;
+    font-size: 0.85rem;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.settings-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.settings-controls button {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Style for icon-only buttons */
+#theme-toggle-btn {
+    padding: 0.6rem;
+    width: 40px; /* Make button square */
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sleek design for the clear button next to search */
+#clear-city-btn {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem;
+    width: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-controls .unit-toggle span {
+    transition: color 0.2s, font-weight 0.2s;
+}
+
+.settings-controls .unit-toggle span.selected-unit {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* --- MAIN CONTENT & SECTIONS --- */
+section {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: background-color 0.3s;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#loader, #error-message {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+/* --- CURRENT WEATHER --- */
+#current-weather .current-weather-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#current-weather #city-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+#current-weather .current-weather-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.current-temp #current-temp-value {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.current-temp #current-weather-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.current-details #weather-description {
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.current-weather-footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- DARK THEME ICON FIX --- */
+body[data-theme="dark"] img[src*="openweathermap.org"] {
+    filter: invert(1) drop-shadow(0 0 3px var(--primary-color));
+    mix-blend-mode: lighten;
+}
+
+/* --- FORECAST SECTIONS --- */
+#hourly-forecast h3, #daily-forecast h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.hourly-container, #daily-forecast-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center; /* Center the cards within the container */
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+    padding-bottom: 1rem;
+}
+
+/* Styles for items that will be injected by JS */
+.daily-item {
+    flex: 0 0 95px; /* Base width for daily cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.daily-item .temp-low {
+    opacity: 0.7;
+}
+
+.daily-item, .hourly-item {
+    /* Animation properties */
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.hourly-item {
+    flex: 0 0 75px; /* Smaller base width for hourly cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 0.5rem; /* Reduced padding to fit content better */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* --- GRADIENT ANIMATION --- */
+@keyframes animateGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 600px) {
+    .app-container {
+        margin: 1rem auto;
+    }
+    .main-controls {
+        justify-content: center; /* Center controls when they wrap */
+    }
+    #search-form {
+        width: 100%; /* Make search form take full width on mobile */
+        margin-bottom: 1rem;
+    }
+}
