@@ -2,7 +2,9 @@
 
 A clean, modern, and feature-rich weather application built with vanilla JavaScript, HTML, and CSS, powered by a Node.js backend proxy to securely handle API requests.
 
- <img width="926" height="1079" alt="screenshot" src="https://github.com/user-attachments/assets/bc28cc38-90de-4342-a577-d6798c8ceb07" />
+## Live Demo
+
+You can view the live application here: **[https://clearsky-weather-app.onrender.com](https://clearsky-weather-app.onrender.com)**
 
 ---
 
